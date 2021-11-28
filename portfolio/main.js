@@ -1,6 +1,21 @@
-import './style.css'
+import "./style.css";
 
-document.querySelector('#app').innerHTML = `
-  <h1>Hello Vite!</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-`
+const getRandom = (min, max) =>
+	Math.floor(Math.random() * (max - min + 1)) + min;
+
+var canvas = document.getElementById("starfield"),
+	context = canvas.getContext("2d"),
+	stars = 500,
+	colorrange = [0, 60, 240];
+
+for (var i = 0; i < stars; i++) {
+	var x = Math.random() * canvas.offsetWidth,
+		y = Math.random() * canvas.offsetHeight,
+		radius = Math.random() * 1.2,
+		hue = colorrange[getRandom(0, colorrange.length - 1)],
+		sat = getRandom(50, 100);
+	context.beginPath();
+	context.arc(x, y, radius, 0, 360);
+	context.fillStyle = "hsl(" + hue + ", " + sat + "%, 88%)";
+	context.fill();
+}
